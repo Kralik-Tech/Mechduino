@@ -1,0 +1,235 @@
+<deployment-project plugin="plugin.toolbox" plugin-version="1.0">
+  <configuration file="C:\Users\Honza\Desktop\mechduino_code\matlab_ovladace\Mechduino Toolbox.prj" location="C:\Users\Honza\Desktop\mechduino_code\matlab_ovladace" name="Mechduino Toolbox" target="target.toolbox" target-name="Package Toolbox">
+    <param.appname>Mechduino Toolbox</param.appname>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.summary>This toolbox was created for the educational purposes of the course Introduction to Programming and Algorithmization.</param.summary>
+    <param.description>This toolbox is used in the course Introduction to Programming and Algorithmization. It enables control of the Ardino MEGA 2560 and other components of the educational kit used in this course. In addition, there are examples of how to use this toolbox to control all the specific componenets of this educational kit. In case MATLAB cannot find the Mechduino class, you need to activate the Mechduino app, which will be installed along with the toolbox.</param.description>
+    <param.screenshot />
+    <param.version>1.1</param.version>
+    <param.output>${PROJECT_ROOT}\Mechduino Toolbox.mltbx</param.output>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.guid>a94467f0-e1a0-4a16-95a1-a051ce2ffc35</param.guid>
+    <param.exclude.filters />
+    <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
+    <param.examples>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;examples&gt;
+   &lt;exampleCategory name="+examples"&gt;
+      &lt;example name="example_Button" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Button.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Button.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_DC_motor" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_DC_motor.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_DC_motor.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Encoder" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Encoder.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Encoder.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Gyroscope" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Gyroscope.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Gyroscope.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Inductive_sensor" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Inductive_sensor.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Inductive_sensor.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_LED" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_LED.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_LED.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Lidar" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Lidar.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Lidar.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Logic_input" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Logic_input.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Logic_input.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Logic_output" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Logic_output.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Logic_output.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Magnetic_encoder" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Magnetic_encoder.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Magnetic_encoder.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_PWM_output" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_PWM_output.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_PWM_output.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Stepper_driver" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Stepper_driver.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Stepper_driver.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_Ultrasonic_sensor" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_Ultrasonic_sensor.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_Ultrasonic_sensor.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+      &lt;example name="example_mass_sensor" type="html"&gt;
+         &lt;file type="source"&gt;/+examples/html/example_mass_sensor.html&lt;/file&gt;
+         &lt;file type="main"&gt;/+examples/example_mass_sensor.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+   &lt;/exampleCategory&gt;
+&lt;/examples&gt;</param.examples>
+    <param.demosxml />
+    <param.apps>
+      <file>${PROJECT_ROOT}\Mechduino.mlappinstall</file>
+    </param.apps>
+    <param.registered.apps />
+    <param.docs />
+    <param.getting.started.guide />
+    <param.matlabpath.excludes />
+    <param.javaclasspath.excludes />
+    <param.exported.on.package>false</param.exported.on.package>
+    <param.required.addons>
+      <requiredaddons />
+    </param.required.addons>
+    <param.matlab.project.id />
+    <param.matlab.project.name />
+    <param.release.start />
+    <param.release.end />
+    <param.release.current.only>false</param.release.current.only>
+    <param.compatiblity.windows>true</param.compatiblity.windows>
+    <param.compatiblity.macos>false</param.compatiblity.macos>
+    <param.compatiblity.linux>false</param.compatiblity.linux>
+    <param.compatiblity.matlabonline>true</param.compatiblity.matlabonline>
+    <param.installation.map />
+    <param.additional.sw.names />
+    <param.additional.sw.licenses />
+    <param.additional.sw.win.url />
+    <param.additional.sw.mac.url />
+    <param.additional.sw.linux.url />
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.screenshot />
+      <param.output />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.exclude.filters />
+      <param.exclude.pcodedmfiles />
+      <param.demosxml />
+      <param.registered.apps />
+      <param.docs />
+      <param.getting.started.guide />
+      <param.matlabpath.excludes />
+      <param.javaclasspath.excludes />
+      <param.exported.on.package />
+      <param.matlab.project.id />
+      <param.matlab.project.name />
+      <param.release.start />
+      <param.release.end />
+      <param.release.current.only />
+      <param.compatiblity.windows />
+      <param.compatiblity.matlabonline />
+      <param.installation.map />
+      <param.additional.sw.names />
+      <param.additional.sw.licenses />
+      <param.additional.sw.win.url />
+      <param.additional.sw.mac.url />
+      <param.additional.sw.linux.url />
+    </unset>
+    <fileset.rootdir>
+      <file>${PROJECT_ROOT}</file>
+    </fileset.rootdir>
+    <fileset.rootfiles>
+      <file>${PROJECT_ROOT}\+controllers</file>
+      <file>${PROJECT_ROOT}\+examples</file>
+      <file>${PROJECT_ROOT}\avrdude_files</file>
+      <file>${PROJECT_ROOT}\demos.xml</file>
+      <file>${PROJECT_ROOT}\demos.xml.bak</file>
+      <file>${PROJECT_ROOT}\find_mechduino.m</file>
+      <file>${PROJECT_ROOT}\hex_files</file>
+      <file>${PROJECT_ROOT}\instal_Mechduino.m</file>
+      <file>${PROJECT_ROOT}\Mechduino.m</file>
+      <file>${PROJECT_ROOT}\Mechduino.mlappinstall</file>
+      <file>${PROJECT_ROOT}\testPortSafe.m</file>
+    </fileset.rootfiles>
+    <fileset.depfun.included />
+    <fileset.depfun.excluded />
+    <fileset.package />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}" name="Mechduino Toolbox.mltbx" optional="false">C:\Users\Honza\Desktop\mechduino_code\matlab_ovladace\Mechduino Toolbox.mltbx</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2024a</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="gpucoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
