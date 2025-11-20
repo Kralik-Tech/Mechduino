@@ -30,12 +30,12 @@
     void scheduler_run(void);
 
     /*
-        Adds task specified by task_callback, sets optional passing of task_context, configures its priority and execution_frequency and puts id of created task in task_id (if error occures, then is set to 0)
+        Adds task specified by task_callback, sets optional passing of task_context, configures its priority and execution_frequency and puts id of created task in task_id (if error occures, it is set to 0)
 
         Returns SCHEDULER_INVALID_PRIORITY, SCHEDULER_INVALID_CALLBACK or SCHEDULER_OK
     */
 
-    SCHEDULER_ERROR add_task(void* task_callback, void* task_context, TASK_PRIORITY_LEVEL priority, uint32_t execution_frequency, uint32_t task_id);
+    SCHEDULER_ERROR add_task(void* task_callback, void* task_context, TASK_PRIORITY_LEVEL priority, uint32_t execution_frequency, uint32_t *task_id);
 
     /*
         Removes task specified by task_id
