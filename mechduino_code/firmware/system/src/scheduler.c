@@ -5,6 +5,13 @@
 #include "../scheduler.h"
 #include "../../platform/platform_timer.h"
 
+/* Architecture description
+
+Every task is implemented using TASK_HANDLE and is placed in EXECUTION_WINDOW.
+Tasks placed in apropriate execution window can be modified or remove as long as number of that execution window is not equal to active_execution_window.
+Tasks are placed in another execution window after each execution (unless delete flag is set)
+*/
+
 typedef struct task_handle {
     uint32_t task_id;                       // Identifier of task
     bool delete_flag;                       // Is true when task is due deletion after next execution
@@ -27,8 +34,7 @@ typedef struct execution_window {
 
 EXECUTION_WINDOW* execution_window_list;    // Contains all execution windows, implemented as linked list
 
-uint32_t next_free_task_id;                     
-uint32_t number_of_active_tasks;
+uint32_t next_free_task_id;                
 uint32_t active_execution_window;           // Number of currently running execution window
 
 bool scheduler_needs_init = true;
@@ -36,6 +42,7 @@ bool scheduler_needs_init = true;
 
 /** Helper functions **/
 
+/* Returns true if priority is invalid */
 bool is_priority_invalid (TASK_PRIORITY_LEVEL priority) {
     switch (priority) {
         case LOW_PRIORITY:
@@ -47,12 +54,9 @@ bool is_priority_invalid (TASK_PRIORITY_LEVEL priority) {
     return true;
 }
 
+/* Returns pointer on task with id task_id */
 TASK_HANDLE* get_task_by_id(uint32_t task_id) {
-    if (number_of_active_tasks == 0) {
-        return NULL;
-    }
-
-    if (execution_window_list == NULL) return NULL;
+    if (execution_window_list == NULL) return NULL; // No tasks exist
 
     EXECUTION_WINDOW* window = execution_window_list;
     TASK_HANDLE* task = execution_window_list->task_list;
@@ -105,7 +109,7 @@ void insert_task (TASK_HANDLE* task, uint32_t execution_offset) {
     else if (window->next->number == (active_execution_window + execution_offset)) { // Insert into already existing execution window
         TASK_HANDLE* insert = window->next->task_list;
 
-        if (insert->priority <= task->priority) {
+        if (insert->priority <= task->priority) { // First task in windows's task_list needs to be changed
             task->next_task = insert;
             window->next->task_list = task;
 
@@ -118,7 +122,7 @@ void insert_task (TASK_HANDLE* task, uint32_t execution_offset) {
         insert->next_task = task;
     }   
 
-    else { // Insert with new execution window in between 2 existing ones
+    else { // Insert with new execution window between 2 existing ones
         EXECUTION_WINDOW* new_window = (EXECUTION_WINDOW*) malloc(sizeof(EXECUTION_WINDOW));
         new_window->number = execution_offset;
         new_window->task_list = task;
@@ -131,10 +135,11 @@ void insert_task (TASK_HANDLE* task, uint32_t execution_offset) {
 
 /** Library functions **/
 
+/* Initial setup of scheduler */
 void scheduler_init() {
-    next_free_task_id = 1;
+    if (!scheduler_needs_init) return;
 
-    number_of_active_tasks = 0;
+    next_free_task_id = 1;
 
     execution_window_list = NULL;
 
@@ -144,6 +149,8 @@ void scheduler_init() {
 }
 
 void scheduler_run(void) {
+    if (!scheduler_needs_init) return;
+
     TIMER_ID_TYPE execution_window_timer = 0;
 
     setup_timer(MILLISECOND_TIMER, &execution_window_timer);
@@ -159,6 +166,7 @@ void scheduler_run(void) {
         EXECUTION_WINDOW* old_window = execution_window_list;
 
         if (old_window == NULL) goto END;
+
         execution_window_list = execution_window_list->next;
         
         free(old_window);
@@ -207,6 +215,8 @@ void scheduler_run(void) {
 }
 
 SCHEDULER_ERROR add_task(void* task_callback, void* task_context, TASK_PRIORITY_LEVEL priority, uint32_t execution_frequency, uint32_t *task_id) {
+    if (scheduler_needs_init) return SCHEDULER_NEEDS_INIT;
+    
     if (task_callback == NULL) return SCHEDULER_INVALID_CALLBACK;
 
     if (is_priority_invalid(priority)) return SCHEDULER_INVALID_PRIORITY;
@@ -225,8 +235,6 @@ SCHEDULER_ERROR add_task(void* task_callback, void* task_context, TASK_PRIORITY_
 
     *task_id = new_task->task_id;
     next_free_task_id++;
-
-    number_of_active_tasks++;
 
     return SCHEDULER_OK;
 }
@@ -251,6 +259,7 @@ SCHEDULER_ERROR remove_task(uint32_t task_id) {
                 if (remove->next_task == task) {
                     goto END;
                 }
+
                 remove = remove->next_task;
             }
         }
@@ -274,7 +283,6 @@ SCHEDULER_ERROR remove_task(uint32_t task_id) {
     }
     else {
         remove->next_task = task->next_task;
-
         free(task);
     }
 
