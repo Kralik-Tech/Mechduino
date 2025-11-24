@@ -14,7 +14,8 @@
         SCHEDULER_OK = 0,                   // No error
         SCHEDULER_INVALID_PRIORITY,         // Task cannot be configured with this priority
         SCHEDULER_INVALID_CALLBACK,         // Callback function can´t be used
-        SCHEDULER_INVALID_ID                // No task with this id      
+        SCHEDULER_INVALID_ID,               // No task with this id      
+        SCHEDULER_NEEDS_INIT                // Function scheduler_init needs to be called first
     } SCHEDULER_ERROR;
 
     /*
@@ -32,7 +33,7 @@
     /*
         Adds task specified by task_callback, sets optional passing of task_context, configures its priority and execution_frequency and puts id of created task in task_id (if error occures, it is set to 0)
 
-        Returns SCHEDULER_INVALID_PRIORITY, SCHEDULER_INVALID_CALLBACK or SCHEDULER_OK
+        Returns SCHEDULER_NEEDS_INIT, SCHEDULER_INVALID_PRIORITY, SCHEDULER_INVALID_CALLBACK or SCHEDULER_OK
     */
 
     SCHEDULER_ERROR add_task(void* task_callback, void* task_context, TASK_PRIORITY_LEVEL priority, uint32_t execution_frequency, uint32_t *task_id);
