@@ -2,13 +2,14 @@
 #define DATABASE_H
 
 typedef enum {
-    DATABASE_OK = 0,
-    DATABASE_INVALID_STACK_ID,
-    DATABASE_FULL
+    DATABASE_OK = 0,            // No error
+    DATABASE_INVALID_STACK_ID,  // Stack ID is invalid
+    DATABASE_FULL,              // Not enough space in database
+    DATABASE_NEED_INIT          // Function database_init needs ro be executed first
 } DATABASE_ERROR;
 
-typedef STACK_ID uint8_t;        // Cannot be equal to INVALID_STACK_ID
-#define INVALID_STACK_ID 0;
+typedef uint8_t STACK_ID;        // Cannot be equal to INVALID_STACK_ID
+#define INVALID_STACK_ID 0
 
 /*
     Performs basic inicialisation of database
@@ -38,27 +39,28 @@ DATABASE_ERROR database_remove_stack(STACK_ID stack_id);
 /*
     Puts one entry into data stack specified by stack_id
 
-    Returns DATABASE_INVALID_STACK_ID, DATABASE_WRITE_ERROR or DATABASE_OK
+    Returns DATABASE_INVALID_STACK_ID or DATABASE_OK
 */
 
-DATABASE_ERROR database_write(STACK_ID stack_id, char* entry);
+DATABASE_ERROR database_write(STACK_ID stack_id, uint8_t* entry);
 
 
 /*
-    Reads latest entry in data stack specified by stack_id and puts it in data
+    Reads latest entry in data stack specified by stack_id and puts it in out (out needs to be innitialised and have sufficient size)
 
-    Returns DATABASE_INVALID_STACK_ID, DATABASE_READ_ERROR, DATABASE_OK
+    Returns DATABASE_INVALID_STACK_ID, DATABASE_OK
 */
 
-DATABASE_ERROR database_read_latest(STACK_ID stack_id, char* data);
+DATABASE_ERROR database_read_latest(STACK_ID stack_id, uint8_t* out);
 
 
 /*
-    Reads all entries in data stack specified by stack_id, puts them in out (entries are ordered from newest) and sets number_of_entries
+    Reads all entries in data stack specified by stack_id, puts them in out (out needs to be innitialised and have sufficient size)
+    and sets number_of_entries. Entries are ordered from newest.
 
-    Returns DATABASE_INVALID_STACK_ID, DATABASE_READ_ERROR or DATABASE_OK
+    Returns DATABASE_INVALID_STACK_ID or DATABASE_OK
 */
 
-DATABASE_ERROR database_read_all(STACK_ID stack_id, char* out, uint8_t number_of_entries);
+DATABASE_ERROR database_read_all(STACK_ID stack_id, uint8_t** out, uint8_t *number_of_entries);
 
 #endif // DATABASE_H
